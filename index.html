@@ -1,52 +1,115 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CICAS Edizioni</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <style>
-        body {
-            margin: 0;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: #faf9f6;
-            font-family: Arial, sans-serif;
-            color: #222;
-            text-align: center;
-        }
+  <title>CICAS</title>
 
-        .container {
-            max-width: 600px;
-            padding: 40px 25px;
-        }
+  <style>
+    * {
+      box-sizing: border-box;
+    }
 
-        h1 {
-            margin: 0 0 20px;
-            font-size: 42px;
-            letter-spacing: 2px;
-        }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #ffffff;
+      color: #222222;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 30px 20px;
+    }
 
-        p {
-            font-size: 20px;
-            line-height: 1.6;
-            margin: 0;
-        }
-    </style>
+    .container {
+      width: 100%;
+      max-width: 520px;
+      text-align: center;
+    }
+
+    .logo {
+      width: min(260px, 75%);
+      height: auto;
+      margin-bottom: 28px;
+    }
+
+    .motto {
+      font-size: 22px;
+      line-height: 1.55;
+      margin: 0 0 42px;
+      font-weight: 500;
+    }
+
+    .motto span {
+      display: block;
+    }
+
+    .intro {
+      font-size: 17px;
+      line-height: 1.6;
+      margin: 0 0 24px;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 15px 28px;
+      background: #222222;
+      color: #ffffff;
+      text-decoration: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 600;
+      transition: opacity 0.2s ease;
+    }
+
+    .button:hover {
+      opacity: 0.8;
+    }
+
+    .footer {
+      margin-top: 55px;
+      font-size: 13px;
+      color: #888888;
+    }
+  </style>
 </head>
 
 <body>
 
-    <div class="container">
-        <h1>CICAS EDIZIONI</h1>
+  <main class="container">
 
-        <p>
-            Benvenuto nel mondo CICAS.<br>
-            Scopri tutti i nostri libri e le prossime uscite.
-        </p>
+    <img
+      src="logo-cicas.png"
+      alt="CICAS"
+      class="logo"
+    >
+
+    <div class="motto">
+      <span>Immaginare.</span>
+      <span>Creare.</span>
+      <span>Uscire a vivere.</span>
     </div>
+
+    <p class="intro">
+      Scopri i libri CICAS.
+    </p>
+
+    <a
+      href="https://www.amazon.com/stores/Cicas-Edizioni/author/B0HKDGQR33"
+      class="button"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      Scopri i nostri libri
+    </a>
+
+    <div class="footer">
+      © CICAS Edizioni
+    </div>
+
+  </main>
 
 </body>
 </html>
