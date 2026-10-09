@@ -1,9 +1,10 @@
+```html
 <!DOCTYPE html>
 <html lang="it">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+  <meta name="theme-color" content="#ffffff">
   <title>CICAS</title>
 
   <style>
@@ -16,11 +17,11 @@
       min-height: 100vh;
       font-family: Arial, Helvetica, sans-serif;
       background: #ffffff;
-      color: #222222;
+      color: #292929;
       display: flex;
       justify-content: center;
       align-items: center;
-      padding: 30px 20px;
+      padding: 32px 20px;
     }
 
     .container {
@@ -30,16 +31,18 @@
     }
 
     .logo {
+      display: block;
       width: min(260px, 75%);
       height: auto;
-      margin-bottom: 28px;
+      margin: 0 auto 30px;
     }
 
     .motto {
-      font-size: 22px;
+      font-size: clamp(22px, 5vw, 28px);
       line-height: 1.55;
-      margin: 0 0 42px;
+      margin: 0 0 26px;
       font-weight: 500;
+      letter-spacing: 0.2px;
     }
 
     .motto span {
@@ -55,7 +58,7 @@
     .button {
       display: inline-block;
       padding: 15px 28px;
-      background: #222222;
+      background: #292929;
       color: #ffffff;
       text-decoration: none;
       border-radius: 8px;
@@ -65,45 +68,77 @@
     }
 
     .button:hover {
-      opacity: 0.8;
+      opacity: 0.82;
+    }
+
+    .languages {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 38px;
+    }
+
+    .languages button {
+      background: #ffffff;
+      color: #444444;
+      border: 1px solid #dddddd;
+      border-radius: 20px;
+      padding: 8px 12px;
+      font-size: 13px;
+      cursor: pointer;
+    }
+
+    .languages button[aria-pressed="true"] {
+      background: #292929;
+      color: #ffffff;
+      border-color: #292929;
     }
 
     .footer {
-      margin-top: 55px;
-      font-size: 13px;
+      margin-top: 42px;
+      font-size: 12px;
       color: #888888;
     }
   </style>
 </head>
 
 <body>
-
   <main class="container">
 
     <img
-      src="logo-cicas.png"
+      src="./logo-cicas.png"
       alt="CICAS"
       class="logo"
     >
 
-    <div class="motto">
-      <span>Immaginare.</span>
-      <span>Creare.</span>
-      <span>Uscire a vivere.</span>
+    <div class="motto" aria-live="polite">
+      <span id="line1">Immaginare.</span>
+      <span id="line2">Creare.</span>
+      <span id="line3">Uscire a vivere.</span>
     </div>
 
-    <p class="intro">
+    <p class="intro" id="intro">
       Scopri i libri CICAS.
     </p>
 
     <a
-      href="https://www.amazon.com/stores/Cicas-Edizioni/author/B0HKDGQR33"
+      id="amazonLink"
       class="button"
+      href="https://www.amazon.com/stores/Cicas-Edizioni/author/B0HKDGQR33"
       target="_blank"
       rel="noopener noreferrer"
     >
       Scopri i nostri libri
     </a>
+
+    <nav class="languages" aria-label="Choose language">
+      <button type="button" data-lang="it" aria-pressed="true">Italiano</button>
+      <button type="button" data-lang="en" aria-pressed="false">English</button>
+      <button type="button" data-lang="es" aria-pressed="false">Español</button>
+      <button type="button" data-lang="de" aria-pressed="false">Deutsch</button>
+      <button type="button" data-lang="fr" aria-pressed="false">Français</button>
+    </nav>
 
     <div class="footer">
       © CICAS Edizioni
@@ -111,5 +146,100 @@
 
   </main>
 
+  <script>
+    const translations = {
+      it: {
+        line1: "Immaginare.",
+        line2: "Creare.",
+        line3: "Uscire a vivere.",
+        intro: "Scopri i libri CICAS.",
+        button: "Scopri i nostri libri",
+        pageTitle: "CICAS",
+        navLabel: "Scegli la lingua"
+      },
+      en: {
+        line1: "Imagine.",
+        line2: "Create.",
+        line3: "Go out and live.",
+        intro: "Discover CICAS books.",
+        button: "Discover our books",
+        pageTitle: "CICAS",
+        navLabel: "Choose language"
+      },
+      es: {
+        line1: "Imaginar.",
+        line2: "Crear.",
+        line3: "Salir a vivir.",
+        intro: "Descubre los libros CICAS.",
+        button: "Descubre nuestros libros",
+        pageTitle: "CICAS",
+        navLabel: "Elige tu idioma"
+      },
+      de: {
+        line1: "Vorstellen.",
+        line2: "Erschaffen.",
+        line3: "Hinausgehen und die Welt erleben.",
+        intro: "Entdecke die Bücher von CICAS.",
+        button: "Unsere Bücher entdecken",
+        pageTitle: "CICAS",
+        navLabel: "Sprache wählen"
+      },
+      fr: {
+        line1: "Imaginer.",
+        line2: "Créer.",
+        line3: "Sortir vivre le monde.",
+        intro: "Découvre les livres CICAS.",
+        button: "Découvrir nos livres",
+        pageTitle: "CICAS",
+        navLabel: "Choisir la langue"
+      }
+    };
+
+    function setLanguage(lang) {
+      const t = translations[lang] || translations.it;
+
+      document.documentElement.lang = lang;
+      document.title = t.pageTitle;
+
+      document.getElementById("line1").textContent = t.line1;
+      document.getElementById("line2").textContent = t.line2;
+      document.getElementById("line3").textContent = t.line3;
+      document.getElementById("intro").textContent = t.intro;
+      document.getElementById("amazonLink").textContent = t.button;
+
+      document.querySelector(".languages").setAttribute(
+        "aria-label",
+        t.navLabel
+      );
+
+      document.querySelectorAll(".languages button").forEach(button => {
+        button.setAttribute(
+          "aria-pressed",
+          button.dataset.lang === lang ? "true" : "false"
+        );
+      });
+    }
+
+    document.querySelectorAll(".languages button").forEach(button => {
+      button.addEventListener("click", () => {
+        setLanguage(button.dataset.lang);
+      });
+    });
+
+    const browserLanguage =
+      (navigator.languages && navigator.languages.length)
+        ? navigator.languages[0]
+        : navigator.language || "it";
+
+    const shortLanguage = browserLanguage.toLowerCase().split("-")[0];
+    const supportedLanguages = ["it", "en", "es", "de", "fr"];
+
+    setLanguage(
+      supportedLanguages.includes(shortLanguage)
+        ? shortLanguage
+        : "en"
+    );
+  </script>
 </body>
 </html>
+```
